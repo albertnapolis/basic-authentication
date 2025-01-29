@@ -1,18 +1,20 @@
 package com.project.basic_authentication.controller;
 
-import com.project.basic_authentication.service.UserServices;
+import com.project.basic_authentication.dto.UserRequestDTO;
+import com.project.basic_authentication.dto.UserResponseDTO;
+import com.project.basic_authentication.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
+    private final UserService userService;
+
+    @PostMapping("/register")
+    public UserResponseDTO register(@RequestBody UserRequestDTO userRequestDTO) {
+        return userService.register(userRequestDTO);
     }
 }
