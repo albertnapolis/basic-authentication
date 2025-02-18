@@ -1,5 +1,6 @@
 package com.project.basic_authentication.controller;
 
+import com.project.basic_authentication.dto.LoginRequestDTO;
 import com.project.basic_authentication.dto.UserRequestDTO;
 import com.project.basic_authentication.dto.UserResponseDTO;
 import com.project.basic_authentication.service.UserService;
@@ -16,5 +17,10 @@ public class UserController {
     @PostMapping("/register")
     public UserResponseDTO register(@RequestBody UserRequestDTO userRequestDTO) {
         return userService.register(userRequestDTO);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequestDTO loginRequestDTO) {
+        return "Success";
     }
 }
