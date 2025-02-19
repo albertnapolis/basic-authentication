@@ -21,6 +21,6 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequestDTO loginRequestDTO) {
-        return "Success";
+        return userService.verify(loginRequestDTO);
     }
 }
