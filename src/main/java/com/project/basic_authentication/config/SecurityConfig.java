@@ -35,8 +35,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/test").permitAll()
-//                        .requestMatchers("/api/v1/users/register").permitAll()
-//                        .requestMatchers("/api/v1/users/login").permitAll()
+                        .requestMatchers("/api/v1/users/register").permitAll()
+                        .requestMatchers("/api/v1/users/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -45,14 +45,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
         provider.setUserDetailsService(userDetailService);
         return provider;
     }

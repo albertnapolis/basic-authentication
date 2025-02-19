@@ -5,7 +5,7 @@ import com.project.basic_authentication.dto.UserResponseDTO;
 import com.project.basic_authentication.entity.UserEntity;
 import com.project.basic_authentication.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public UserResponseDTO register(UserRequestDTO userRequestDTO) {
         UserEntity userEntity = new UserEntity();
